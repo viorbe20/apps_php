@@ -18,7 +18,15 @@ if (!isset($_SESSION['user']['profile'])) {
 
 $router = new Router();
 
-//Home page
+//OBRAS
+
+$router->add(array(
+    'name' => 'obras prestar',
+    'path' => '/^\/obras\/prestar\/\d{1,3}$/',
+    'action' => [ObrasController::class, 'prestarObrasAction'],
+    'auth' => ["employee"]
+));
+
 $router->add(array(
     'name' => 'obras',
     'path' => '/^\/obras$/',

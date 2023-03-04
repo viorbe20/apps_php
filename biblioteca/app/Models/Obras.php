@@ -31,6 +31,16 @@ class Obras extends DBAbstractModel
     private $apellidos_autor;
     private $editorial;
 
+
+    public function getById()
+    {
+        $this->query = "SELECT * FROM obras WHERE id=:id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
+
     //Search box obras
     public function searchBook()
     {

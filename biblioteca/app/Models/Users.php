@@ -33,6 +33,23 @@ class Users extends DBAbstractModel
     private $username;
     private $psw;
 
+
+    //get all
+    public function getall()
+    {
+        $this->query = "SELECT * FROM usuarios";
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
+    public function getById()
+    {
+        $this->query = "SELECT * FROM usuarios WHERE id=:id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
     public function getByLogin()
     {
         $this->query = "SELECT * FROM usuarios WHERE username=:username AND psw=:psw";
@@ -42,6 +59,22 @@ class Users extends DBAbstractModel
         $result = $this->rows;
         return $result;
     }
+
+    //Get one user with prestamo quantity of loans
+    public function getUserLoansById()
+{
+    $this->query = "SELECT usuarios.nombre, usuarios.apellidos,
+                    COUNT(prestamos.id) AS cantidad_prestamos 
+                    FROM usuarios
+                    LEFT JOIN prestamos ON usuarios.id = prestamos.id_usuario AND prestamos.estado = 1
+                    WHERE usuarios.id = :id
+                    GROUP BY usuarios.id";
+    $this->parametros['id'] = $this->id;
+    $this->get_results_from_query();
+    $result = $this->rows;
+    return $result;
+}
+
 
     public function getId()
     {

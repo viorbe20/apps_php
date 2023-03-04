@@ -18,6 +18,16 @@ function getCurrentDate () {
     return date('d/m/Y', time());
 }
 
+function getDateInSevenDays() {
+    $dateInSevenDays = date('d/m/Y', strtotime('+7 days'));
+    return $dateInSevenDays;
+}
+
+function getDateInSevenDaysDB() {
+    $dateInSevenDays = date('Y/m/d', strtotime('+7 days'));
+    return $dateInSevenDays;
+}
+
 function getCurrentDateString() {
     setlocale(LC_TIME, 'es_ES');
     return strftime('%A, %e de %B de %Y');
