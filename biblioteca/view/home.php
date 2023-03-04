@@ -24,8 +24,6 @@
     require_once '../view/require/header.php';
     ?>
 
-    <a href="<?php echo DIRBASEURL; ?>/logout" class="btn btn-danger rounded-pill px-4 my-1">Salir</a>
-
     <main class='d-flex flex-column justify-content-center my-5 align-items-center'>
 
         <img src='../../assets/img/library.jpg' width='30%'>
@@ -34,4 +32,4 @@
 
 </body>
 
-</html>
+</html>    

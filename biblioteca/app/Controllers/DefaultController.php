@@ -22,10 +22,20 @@ class DefaultController extends BaseController
             $result = $user->getByLogin();
             
             if ($result) {
-                print_r($result);
-                $_SESSION['user']['profile'] = ""; //admin, user, employee, guest
-                $_SESSION['user']['username'] = "";
+                
                 $_SESSION['user']['status'] = "login"; 
+                
+                foreach ($result as $key => $value) {
+                    $_SESSION['user']['username'] = $value['username'];
+                    
+                    if ($value['perfil'] == 1) {
+                        $_SESSION['user']['profile'] = "admin";
+                    } else if ($value['perfil'] == 2) {
+                        $_SESSION['user']['profile'] = "employee";
+                    } else if ($value['perfil'] == 3) {
+                        $_SESSION['user']['profile'] = "user";
+                    }   
+                }
             } else {
                 echo "<script>alert('Datos incorrectos. Vuelve a intentarlo.');</script>";
             }

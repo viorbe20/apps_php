@@ -20,6 +20,7 @@
         if($_SESSION['user']['status'] == 'logout') {
             require_once 'login_form.php';
         } else if ($_SESSION['user']['status'] == 'login'){
+            require_once 'user_info.php';
             require_once 'logout_btn.php';
         } 
         ?>
