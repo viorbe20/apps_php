@@ -11,7 +11,7 @@ session_start();
 //Always open session as guest
 if (!isset($_SESSION['user']['profile'])) {
     $_SESSION['user']['profile'] = "guest"; //admin, user, employee, guest
-    $_SESSION['user']['name'] = "invitado";
+    $_SESSION['user']['username'] = "invitado";
     $_SESSION['user']['status'] = "logout"; //login
     
 }
@@ -34,13 +34,6 @@ $router->add(array(
     'auth' => ["admin, user, guest, employee"]
 ));
 
-//Login process
-$router->add(array(
-    'name' => 'login',
-    'path' => '/^\/login$/',
-    'action' => [DefaultController::class, 'loginAction'],
-    'auth' => ["admin, user"]
-));
 
 //Log out page
 $router->add(array(

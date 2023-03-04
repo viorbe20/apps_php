@@ -21,7 +21,11 @@
     ?>
 
     <?php
-    require_once '../view/require/header.php';
+    if($_SESSION['user']['status'] == 'logout'){
+        require_once '../view/require/title.php';
+    } else {
+        require_once '../view/require/header.php';
+    }
     ?>
 
     <main class='d-flex flex-column justify-content-center'>

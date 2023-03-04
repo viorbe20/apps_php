@@ -14,15 +14,4 @@
             <div>
             </div>
     </section>
-
-    <section class='d-flex'>
-        <?php 
-        if($_SESSION['user']['status'] == 'logout') {
-            require_once 'login_form.php';
-        } else if ($_SESSION['user']['status'] == 'login'){
-            require_once 'logout_btn.php';
-        } 
-        ?>
-    </section>
-
 </header>

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2023 at 09:40 AM
+-- Generation Time: Mar 04, 2023 at 01:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -35,6 +35,17 @@ CREATE TABLE `obras` (
   `editorial` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `obras`
+--
+
+INSERT INTO `obras` (`id`, `titulo`, `nombre_autor`, `apellidos_autor`, `editorial`) VALUES
+(1, 'El Quijote', 'Miguel', 'de Cervantes', 'Anaya'),
+(2, 'La sombra del viento', 'Carlos ', 'Ruiz Zafón', 'Planeta'),
+(3, 'Cien años de soledad', 'Gabriel', 'García Márquez', 'Círculo de Lectores'),
+(4, 'Nada', 'Carmen', 'Laforet', 'Destino'),
+(5, 'La Regenta', 'Leopoldo', 'Alas Clarín', 'Cátedra');
+
 -- --------------------------------------------------------
 
 --
@@ -42,11 +53,17 @@ CREATE TABLE `obras` (
 --
 
 CREATE TABLE `perfiles` (
-  `id` int(11) NOT NULL,
-  `user` varchar(355) NOT NULL,
-  `employee` varchar(355) NOT NULL,
-  `admin` varchar(355) NOT NULL
+  `perfil` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `perfiles`
+--
+
+INSERT INTO `perfiles` (`perfil`) VALUES
+('admin'),
+('employee'),
+('user');
 
 -- --------------------------------------------------------
 
@@ -63,6 +80,14 @@ CREATE TABLE `prestamos` (
   `estado` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `prestamos`
+--
+
+INSERT INTO `prestamos` (`id`, `id_obra`, `id_usuario`, `fecha_prestamo`, `fecha_devolucion`, `estado`) VALUES
+(1, 1, 1, '2023-03-04', '2023-03-11', 1),
+(2, 1, 2, '2023-03-04', '2023-03-05', 0);
+
 -- --------------------------------------------------------
 
 --
@@ -74,8 +99,18 @@ CREATE TABLE `usuarios` (
   `dni` varchar(15) NOT NULL,
   `nombre` varchar(256) NOT NULL,
   `apellidos` varchar(255) NOT NULL,
-  `perfil` int(11) NOT NULL
+  `perfil` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `psw` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `usuarios`
+--
+
+INSERT INTO `usuarios` (`id`, `dni`, `nombre`, `apellidos`, `perfil`, `username`, `psw`) VALUES
+(1, '44362508Q', 'Virginia', 'Ordoño Bernier', 3, 'virginia', 'virginia'),
+(2, '44362538Q', 'Daniel', 'Ayala Cantador', 3, 'daniel', 'daniel');
 
 --
 -- Indexes for dumped tables
@@ -91,7 +126,7 @@ ALTER TABLE `obras`
 -- Indexes for table `perfiles`
 --
 ALTER TABLE `perfiles`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`perfil`);
 
 --
 -- Indexes for table `prestamos`
@@ -113,25 +148,19 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT for table `obras`
 --
 ALTER TABLE `obras`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `perfiles`
---
-ALTER TABLE `perfiles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `prestamos`
 --
 ALTER TABLE `prestamos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
