@@ -1,5 +1,4 @@
-<section class='d-flex flex-column align-items-center' style='margin-left: 2rem; margin-right: 2rem'>
-<h4 class='card d-flex text-center py-2 my-2 text-secondary bg-light w-25'>Obras</h4>
+<section class='d-flex flex-column align-items-center' style='margin: 3rem'>
 <table class="table">
     <thead class="thead-light">
         <tr>

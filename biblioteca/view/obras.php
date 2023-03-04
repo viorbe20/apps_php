@@ -24,11 +24,12 @@
     require_once '../view/require/header.php';
     ?>
 
-    <a href="<?php echo DIRBASEURL; ?>/logout" class="btn btn-danger rounded-pill px-4 my-1">Salir</a>
-
-    <main class='d-flex flex-column justify-content-center my-5'>
-
+    <main class='d-flex flex-column justify-content-center'>
+    <section class='d-flex flex-column align-items-center' style='margin: 1rem'>
+        <h4 class='card d-flex text-center py-2 text-secondary bg-light w-25'>Obras</h4>
+    </section>
             <?php
+            require_once '../view/require/search_obra.php';
             require_once '../view/require/tabla_obras.php';
             ?>
 

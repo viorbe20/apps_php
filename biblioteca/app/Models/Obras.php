@@ -31,6 +31,37 @@ class Obras extends DBAbstractModel
     private $apellidos_autor;
     private $editorial;
 
+    //Search box obras
+    public function searchBook()
+    {
+        $this->query = "SELECT * FROM obras WHERE titulo LIKE CONCAT('%',:titulo,'%')";
+        $this->parametros['titulo'] = $this->titulo;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
+    public function searchBookWithPrestamoStatus()
+    {
+        $this->query = "SELECT obras.*, 
+                    CASE WHEN prestamos.estado IS NULL THEN 'Disponible' ELSE prestamos.estado END AS estado_prestamo
+                    FROM obras 
+                    LEFT JOIN (
+                        SELECT id_obra, estado 
+                        FROM prestamos 
+                        WHERE estado = 1
+                        GROUP BY id_obra
+                    ) prestamos 
+                    ON prestamos.id_obra = obras.id
+                    WHERE obras.titulo LIKE CONCAT('%', :titulo, '%')
+                      AND (prestamos.estado IS NOT NULL OR prestamos.estado IS NULL)
+                    ORDER BY obras.id DESC";
+        $this->parametros['titulo'] = $this->titulo;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
+
+
     //Get all books ordered by id from last to first
     public function getAll()
     {
@@ -48,9 +79,9 @@ class Obras extends DBAbstractModel
         return $this->rows;
     }
 
-public function getAllWithPrestamoStatus()
-{
-    $this->query = "SELECT obras.*, 
+    public function getAllWithPrestamoStatus()
+    {
+        $this->query = "SELECT obras.*, 
                     CASE WHEN prestamos.estado IS NULL THEN 'Disponible' ELSE prestamos.estado END AS estado_prestamo
                     FROM obras 
                     LEFT JOIN (
@@ -61,11 +92,9 @@ public function getAllWithPrestamoStatus()
                     ) prestamos 
                     ON prestamos.id_obra = obras.id
                     ORDER BY obras.id DESC";
-    $this->get_results_from_query();
-    return $this->rows;
-}
-
-
+        $this->get_results_from_query();
+        return $this->rows;
+    }
 
     public function getId()
     {
