@@ -18,16 +18,13 @@ while ($i >= 0 && isset($data['usuarios'][$i])) {
                 <?php
                 if ($value['estado']  == 'Activo') { ?>
                 <a href='<?php echo DIRBASEURL . "/usuarios/bloquear/" . $value['id'] ?>' class='btn btn-warning rounded-pill px-4 my-1'>Bloquear</a>
-                    <button type='submit' name='edit' class='btn btn-primary rounded-pill px-4 my-1'>Editar</button>
-                    <input type='hidden' name='edit_hidden' value='<?php echo $value['id'] ?>'>
+                <a href='<?php echo DIRBASEURL . "/usuarios/editar/" . $value['id'] ?>' class='btn btn-primary rounded-pill px-4 my-1'>Editar</a>
                 <?php
                 } else { ?>
                 <a href='<?php echo DIRBASEURL . "/usuarios/desbloquear/" . $value['id'] ?>' class='btn btn-success rounded-pill px-4 my-1'>Desbloquear</a>
                 <?php
                 }
                 ?>
-                <button type='submit' name='delete' class='btn btn-danger rounded-pill px-4 my-1'>Eliminar</button>
-                <input type='hidden' name='edit_hidden' value='<?php echo $value['id'] ?>'>
             </form>
         </td>
     </tr>

@@ -52,6 +52,14 @@ $router->add(array(
 ));
 
 $router->add(array(
+    'name' => 'usuarios editar',
+    'path' => '/^\/usuarios\/editar\/\d{1,3}$/',
+    'action' => [AdminController::class, 'editarUsuarioAction'],
+    'auth' => ["admin"]
+));
+
+
+$router->add(array(
     'name' => 'usuarios bloquear',
     'path' => '/^\/usuarios\/bloquear\/\d{1,3}$/',
     'action' => [AdminController::class, 'bloquearUsuarioAction'],

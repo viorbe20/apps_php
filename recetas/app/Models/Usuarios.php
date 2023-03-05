@@ -31,7 +31,29 @@ class Usuarios extends DBAbstractModel
     private $psw;
     private $estado;
 
-    //change estado from Activo to Bloqueado
+    public function editData(){
+        $this->query = "UPDATE usuarios SET nombre = :nombre, usuario = :usuario, password = :psw WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->parametros['nombre'] = $this->nombre;
+        $this->parametros['usuario'] = $this->usuario;
+        $this->parametros['psw'] = $this->psw;
+        $this->get_results_from_query();
+    }
+
+    public function getById(){
+        $this->query = "SELECT * FROM usuarios WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
+
+    public function delete()
+    {
+        $this->query = "DELETE FROM usuarios WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+    }
     public function block()
     {
         $this->query = "UPDATE usuarios SET estado = 'Bloqueado' WHERE id = :id";

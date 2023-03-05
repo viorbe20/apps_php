@@ -36,8 +36,11 @@ foreach($u->getByLogin() as $key => $value){
 }
 
 foreach ($r->getAll() as $key => $value) {
-    var_dump($value);
+    //var_dump($value);
 }
+$u->setId(1);
+$u->delete();
+var_dump($u->getById());
 
 
 ?>

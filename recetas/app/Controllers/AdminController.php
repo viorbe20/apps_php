@@ -2,9 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Controllers\TemplateController;
 use App\Models\Usuarios;
-use App\Models\Recetas;
 
 require_once '../app/Config/constantes.php';
 require_once '../utils/my_utils.php';
@@ -12,6 +10,36 @@ require_once '../utils/my_utils.php';
 class AdminController extends BaseController
 {
 
+    public function editarUsuarioAction($request)
+    {
+        //Check if user is admin
+        if ($_SESSION['user']['profile'] == "Admin") {
+            $data = array();
+            $user = Usuarios::getInstancia();
+            $rest = explode("/", $request);
+            $id = (int)end($rest);
+            $user->setId($id);
+            
+            foreach ($user->getById() as $value) {
+                $data['usuario'] = $value;
+            }
+
+            if(isset($_POST['btn_edit_user'])){
+                $user->setNombre(clearData($_POST['name']));
+                $user->setUsuario(clearData($_POST['username']));
+                $user->setPsw(clearData($_POST['password']));
+                $user->editData();
+                header('Location: ' . DIRBASEURL . "/usuarios");
+            } else {
+                $this->renderHTML('../view/editar_usuario.php', $data);
+            }
+            
+
+
+        } else {
+            header('Location: ' . DIRBASEURL . "/home");
+        }
+    }
     public function bloquearUsuarioAction($request)
     {
         //Check if user is admin
@@ -33,7 +61,7 @@ class AdminController extends BaseController
             
             //Control number of users to show
             if ($data['usuarios'] == null) {
-                echo "<script>alert('No hay usuarios')</script>";
+                echo "<script>alert('No hay usuarios')</sc>";
             } else if (count($data['usuarios']) >= 7) {
                 $data['show_users'] = 5;
             } else {
