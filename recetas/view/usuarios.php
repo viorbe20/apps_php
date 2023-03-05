@@ -30,7 +30,9 @@ require_once '../app/Config/constantes.php';
 
 
         <?php
-        require_once '../view/require/tabla_usuarios.php';
+        if(isset($data['usuarios'])){
+            require_once '../view/require/tabla_usuarios.php';
+        }
         ?>
     </main>
 </body>

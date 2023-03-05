@@ -52,6 +52,16 @@ class Usuarios extends DBAbstractModel
         return $result;
     }
 
+    //get only users with profile users
+    public function getOnlyUsers(){
+        $this->query = "SELECT usuarios.*, r_usuarios_perfiles.Perfiles_perfil FROM usuarios INNER JOIN r_usuarios_perfiles
+        ON usuarios.id = r_usuarios_perfiles.usuarios_id
+        WHERE r_usuarios_perfiles.Perfiles_perfil = 'User'";
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
+
     public function getByLogin(){
         $this->query = "SELECT usuarios.*, r_usuarios_perfiles.Perfiles_perfil FROM usuarios INNER JOIN r_usuarios_perfiles
         ON usuarios.id = r_usuarios_perfiles.usuarios_id

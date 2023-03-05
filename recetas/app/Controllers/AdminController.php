@@ -27,10 +27,10 @@ class AdminController extends BaseController
             $user->block();
 
             //Get data and show
-            foreach ($user->getAll() as $key => $value) {
+            foreach ($user->getOnlyUsers() as $key => $value) {
                 $data['usuarios'][] = $value;
             }
-
+            
             //Control number of users to show
             if ($data['usuarios'] == null) {
                 echo "<script>alert('No hay usuarios')</script>";
@@ -61,10 +61,10 @@ class AdminController extends BaseController
             $user->unblock();
 
             //Get data and show
-            foreach ($user->getAll() as $key => $value) {
+            foreach ($user->getOnlyUsers() as $key => $value) {
                 $data['usuarios'][] = $value;
             }
-
+            
             //Control number of users to show
             if ($data['usuarios'] == null) {
                 echo "<script>alert('No hay usuarios')</script>";
@@ -88,13 +88,14 @@ class AdminController extends BaseController
             $data = array();
             $user = Usuarios::getInstancia();
 
-            foreach ($user->getAll() as $key => $value) {
+            foreach ($user->getOnlyUsers() as $key => $value) {
                 $data['usuarios'][] = $value;
             }
 
             //Control number of users to show
             if ($data['usuarios'] == null) {
-                echo "<script>alert('No hay usuarios')</script>";
+                //echo "<script>alert('No hay usuarios')</script>";
+                $data['show_users'] = 0;
             } else if (count($data['usuarios']) >= 7) {
                 $data['show_users'] = 5;
             } else {
