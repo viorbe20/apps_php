@@ -1,0 +1,13 @@
+.error_span {
+  color: #842029;
+  background-color: #F8D7DA;
+  border-color: #F5C6CB;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 5px;
+  font-size: 10px;
+}
+
+#autocomplete_company .ui-menu-item-wrapper {
+  padding-left: 0 !important;
+}/*# sourceMappingURL=style.css.map */
