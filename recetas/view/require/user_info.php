@@ -1,5 +1,5 @@
 <!--User info-->
-<section class='d-flex justify-content-center align-items-center text-bg-secondary'>
+<section class='d-flex align-items-center justify-content-between text-bg-secondary' style='width: 25rem'>
     <div class="d-flex">
         <div class="d-flex align-items: center">
             <span class="material-symbols-outlined mx-2" style="font-size: 2rem;">
@@ -10,4 +10,5 @@
             <p><?php echo getGreeting() . ' ' . $_SESSION['user']['username']; ?></p>
         </div>
     </div>
+    <?php require_once 'data_info.php';?>
 </section>

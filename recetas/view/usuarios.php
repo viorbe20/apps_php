@@ -25,11 +25,12 @@ require_once '../app/Config/constantes.php';
 
 <main class='d-flex flex-column justify-content-center align-items-center' style='padding: 2% 8%'>
 
-        <h4 class='card d-flex text-center py-2 my-2 mx-5 bg-secondary text-white'>Usuarios</h4>
+
+<h3 class='d-flex text-center py-2 my-3 mx-5 text-secondary'>Usuarios</h3>
 
 
         <?php
-        require_once '../view/require/tabla_publicaciones.php';
+        require_once '../view/require/tabla_usuarios.php';
         ?>
     </main>
 </body>

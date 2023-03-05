@@ -11,50 +11,37 @@ require_once '../utils/my_utils.php';
 
 class DefaultController extends BaseController
 {
-
-    public function pagosAction(){
-
-        //Check if user is admin
-        if($_SESSION['user']['profile'] == "admin"){
-
-            $data = array();
-
-
-            $this->renderHTML('../view/pagos.php', $data);
-
-        } else {
-            header('Location: ' . DIRBASEURL . "/home");
-        }
-    }
-
     public function homeAction()
     {
 
         $data = array();
         $usuario = Usuarios::getInstancia();
         $receta = Recetas::getInstancia();
-            
+
         foreach ($receta->getall() as $key => $value) {
             $data['recetas'][] = $value;
         }
 
-        if(isset($_POST['login'])){
+        if (isset($_POST['login'])) {
 
             //Comprobar que el usuario existe
             $usuario->setUsuario(clearData($_POST['username']));
             $usuario->setPsw(clearData($_POST['password']));
 
-            if($usuario->getByLogin() != null) {
+            if ($usuario->getByLogin() != null) {
 
-                foreach($usuario->getByLogin() as $key => $value){
-                    $_SESSION['user']['status'] = "login"; 
+                foreach ($usuario->getByLogin() as $key => $value) {
+                    $_SESSION['user']['status'] = "login";
                     $_SESSION['user']['username'] = $value['usuario'];
                     $_SESSION['user']['profile'] = $value['Perfiles_perfil'];
                     $_SESSION['user']['estado'] = $value['estado'];
                 }
 
-                header('Location: ' . DIRBASEURL . "/publicaciones");
-
+                if ($_SESSION['user']['profile'] = 'Admin') {
+                    header('Location: ' . DIRBASEURL . "/usuarios");
+                } else {
+                    header('Location: ' . DIRBASEURL . "/publicaciones");
+                }
             } else {
                 echo '<script>alert("Usuario o contraseña incorrectos")</script>';
                 $this->renderHTML('../view/home.php', $data);
@@ -62,7 +49,6 @@ class DefaultController extends BaseController
         } else { //By default
             $this->renderHTML('../view/home.php', $data);
         }
-        
     }
 
 

@@ -5,6 +5,7 @@ require_once('..\vendor\autoload.php');
 use App\Core\Router;
 use App\Controllers\DefaultController;
 use App\Controllers\RecetasController;
+use App\Controllers\AdminController;
 
 
 
@@ -46,21 +47,28 @@ $router = new Router();
 $router->add(array(
     'name' => 'pagos',
     'path' => '/^\/pagos$/',
-    'action' => [DefaultController::class, 'pagosAction'],
+    'action' => [AdminController::class, 'pagosAction'],
     'auth' => ["admin"]
 ));
 
 $router->add(array(
-    'name' => 'usuarios profile',
-    'path' => '/^\/usuarios\/usuario_profiled\/{1,3}$$/',
-    'action' => [DefaultController::class, 'usuariosAction'],
+    'name' => 'usuarios bloquear',
+    'path' => '/^\/usuarios\/bloquear\/\d{1,3}$/',
+    'action' => [AdminController::class, 'bloquearUsuarioAction'],
+    'auth' => ["admin"]
+));
+
+$router->add(array(
+    'name' => 'usuarios desbloquear',
+    'path' => '/^\/usuarios\/desbloquear\/\d{1,3}$/',
+    'action' => [AdminController::class, 'desbloquearUsuarioAction'],
     'auth' => ["admin"]
 ));
 
 $router->add(array(
     'name' => 'usuarios',
     'path' => '/^\/usuarios$/',
-    'action' => [DefaultController::class, 'usuariosAction'],
+    'action' => [AdminController::class, 'usuariosAction'],
     'auth' => ["admin"]
 ));
 

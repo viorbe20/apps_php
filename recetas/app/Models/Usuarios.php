@@ -31,8 +31,26 @@ class Usuarios extends DBAbstractModel
     private $psw;
     private $estado;
 
-    //Given usuarioname and password, get from table usuarios: id, usuario, password y estado and from 
-    //table r_usuarios_perfiles: with usuarios_id get Perfiles_perfil
+    //change estado from Activo to Bloqueado
+    public function block()
+    {
+        $this->query = "UPDATE usuarios SET estado = 'Bloqueado' WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+    }
+
+    public function unblock()
+    {
+        $this->query = "UPDATE usuarios SET estado = 'Activo' WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+    }
+    public function getAll(){
+        $this->query = "SELECT * FROM usuarios";
+        $this->get_results_from_query();
+        $result = $this->rows;
+        return $result;
+    }
 
     public function getByLogin(){
         $this->query = "SELECT usuarios.*, r_usuarios_perfiles.Perfiles_perfil FROM usuarios INNER JOIN r_usuarios_perfiles

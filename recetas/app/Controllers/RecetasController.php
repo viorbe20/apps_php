@@ -29,8 +29,6 @@ class RecetasController extends BaseController
 
         $data = array();
         $receta = Recetas::getInstancia();
-
-        //Save new recipe
         
         foreach ($receta->getall() as $key => $value) {
             $data['recetas'][] = $value;
