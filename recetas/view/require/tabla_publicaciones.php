@@ -22,12 +22,9 @@
                         <?php
                         if ($_SESSION['user']['profile'] == 'User') { ?>
                             <form method='post'>
-                                <button type='submit' name='votar' class='btn btn-primary rounded-pill px-4 my-1'>Votar</button>
-                                <input type='hidden' name='votar_hidden' value='<?php echo $value['id'] ?>'>
-                                <button type='submit' name='recomendar' class='btn btn-warning rounded-pill px-4 my-1'>Recomendar</button>
-                                <input type='hidden' name='recomendar_hidden' value='<?php echo $value['id'] ?>'>
-                                <button type='submit' name='favorita' class='btn btn-success rounded-pill px-4 my-1'>Favorita</button>
-                                <input type='hidden' name='favorita_hidden' value='<?php echo $value['id'] ?>'>
+                                <a href='<?php echo DIRBASEURL ?>/publicaciones/votar/<?php echo $value['id'] ?>' class='btn btn-warning rounded-pill px-4 my-1'>Votar</a>
+                                <a href='<?php echo DIRBASEURL ?>/publicaciones/fav/<?php echo $value['id'] ?>' class='btn btn-primary rounded-pill px-4 my-1'>Añadir favoritos</a>
+                                <a href='<?php echo DIRBASEURL ?>/publicaciones/consultar/<?php echo $value['id'] ?>' class='btn btn-success rounded-pill px-4 my-1'>Consultar</a>
                             </form>
                         <?php
                         } else if ($_SESSION['user']['profile'] == 'Collaborator'){ ?>

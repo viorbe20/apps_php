@@ -80,7 +80,35 @@ $router->add(array(
     'auth' => ["admin"]
 ));
 
-//Mis recetas page
+$router->add(array(
+    'name' => 'publicacion votar',
+    'path' => '/^\/publicaciones\/votar\/\d{1,3}$/',
+    'action' => [RecetasController::class, 'votarAction'],
+    'auth' => ["user"]
+));
+
+$router->add(array(
+    'name' => 'publicacion votar',
+    'path' => '/^\/publicaciones\/votar$/',
+    'action' => [RecetasController::class, 'votarAction'],
+    'auth' => ["user"]
+));
+
+
+$router->add(array(
+    'name' => 'publicacion fav',
+    'path' => '/^\/publicaciones\/fav\/\d{1,3}$/',
+    'action' => [RecetasController::class, 'favAction'],
+    'auth' => ["user"]
+));
+
+$router->add(array(
+    'name' => 'publicacion consultar',
+    'path' => '/^\/publicaciones\/consultar\/\d{1,3}$/',
+    'action' => [RecetasController::class, 'consultarAction'],
+    'auth' => ["user"]
+));
+
 $router->add(array(
     'name' => 'mis recetas',
     'path' => '/^\/mis_recetas$/',

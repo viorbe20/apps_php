@@ -34,6 +34,7 @@ class DefaultController extends BaseController
                     $_SESSION['user']['username'] = $value['usuario'];
                     $_SESSION['user']['profile'] = $value['Perfiles_perfil'];
                     $_SESSION['user']['estado'] = $value['estado'];
+                    $_SESSION['user']['id'] = $value['id'];
                 }
                 $this->renderHTML('../view/home.php', $data);
 

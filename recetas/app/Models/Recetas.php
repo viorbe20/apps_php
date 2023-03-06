@@ -33,10 +33,18 @@ class Recetas extends DBAbstractModel
     private $publica;
     private $imagen;
     private $idColaborador;
-    public function searchReceiptBox2()
+    public function getById(){
+        $this->query = "SELECT * FROM recetas WHERE id = :id";
+        $this->parametros['id'] = $this->id;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+    public function getByIdWithVote()
     {
-        $this->query = "SELECT * FROM recetas WHERE titulo LIKE CONCAT('%',:titulo,'%')";
-        $this->parametros['titulo'] = $this->titulo;
+        $this->query = "SELECT recetas.*, r_usuarios_recetas_votacion.* 
+        FROM recetas INNER JOIN  r_usuarios_recetas_votacion
+        ON recetas.id =  r_usuarios_recetas_votacion.recetas_id WHERE recetas.id = :id";
+        $this->parametros['id'] = $this->id;
         $this->get_results_from_query();
         return $this->rows;
     }
