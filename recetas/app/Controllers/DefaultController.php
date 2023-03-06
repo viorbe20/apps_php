@@ -29,19 +29,14 @@ class DefaultController extends BaseController
             $usuario->setPsw(clearData($_POST['password']));
 
             if ($usuario->getByLogin() != null) {
-
                 foreach ($usuario->getByLogin() as $key => $value) {
                     $_SESSION['user']['status'] = "login";
                     $_SESSION['user']['username'] = $value['usuario'];
                     $_SESSION['user']['profile'] = $value['Perfiles_perfil'];
                     $_SESSION['user']['estado'] = $value['estado'];
                 }
+                $this->renderHTML('../view/home.php', $data);
 
-                if ($_SESSION['user']['profile'] = 'Admin') {
-                    header('Location: ' . DIRBASEURL . "/usuarios");
-                } else {
-                    header('Location: ' . DIRBASEURL . "/publicaciones");
-                }
             } else {
                 echo '<script>alert("Usuario o contraseña incorrectos")</script>';
                 $this->renderHTML('../view/home.php', $data);

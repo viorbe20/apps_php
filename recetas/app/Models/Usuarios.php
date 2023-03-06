@@ -31,6 +31,13 @@ class Usuarios extends DBAbstractModel
     private $psw;
     private $estado;
 
+    public function searchUserBox()
+    {
+        $this->query = "SELECT * FROM users WHERE nombre LIKE CONCAT('%',:nombre,'%')";
+        $this->parametros['nombre'] = $this->nombre;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
     public function editData(){
         $this->query = "UPDATE usuarios SET nombre = :nombre, usuario = :usuario, password = :psw WHERE id = :id";
         $this->parametros['id'] = $this->id;

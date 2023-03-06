@@ -1,4 +1,5 @@
 <div class="container d-flex">
+   
     <ul class="navbar-nav p-2 d-flex flex-row">
         <?php
         if ($_SESSION['user']['profile'] == 'Admin') { ?>

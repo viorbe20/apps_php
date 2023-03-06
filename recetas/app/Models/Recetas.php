@@ -33,18 +33,24 @@ class Recetas extends DBAbstractModel
     private $publica;
     private $imagen;
     private $idColaborador;
+    public function searchReceiptBox2()
+    {
+        $this->query = "SELECT * FROM recetas WHERE titulo LIKE CONCAT('%',:titulo,'%')";
+        $this->parametros['titulo'] = $this->titulo;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
 
-    //Get all the recepies with idColborador
-    // public function getByLogin(){
-    //     $this->query = "SELECT usuarios.*, r_usuarios_perfiles.Perfiles_perfil FROM usuarios INNER JOIN r_usuarios_perfiles
-    //     ON usuarios.id = r_usuarios_perfiles.usuarios_id
-    //     WHERE usuarios.usuario = :usuario AND usuarios.password = :psw";
-    //     $this->parametros['usuario'] = $this->usuario;
-    //     $this->parametros['psw'] = $this->psw;
-    //     $this->get_results_from_query();
-    //     $result = $this->rows;
-    //     return $result;
-    // }
+    public function searchReceiptBox()
+    {
+        $this->query = "SELECT recetas.*, colaboradores.cuenta 
+        FROM recetas INNER JOIN colaboradores 
+        WHERE titulo LIKE CONCAT('%',:titulo,'%')";
+        $this->parametros['titulo'] = $this->titulo;
+        $this->get_results_from_query();
+        return $this->rows;
+    }
+
     public function getAll()
     {
         $this->query = "SELECT recetas.*, colaboradores.cuenta FROM recetas INNER JOIN colaboradores

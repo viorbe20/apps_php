@@ -31,6 +31,7 @@ require_once '../app/Config/constantes.php';
         <h3 class='d-flex text-center py-2 my-3 mx-5 text-secondary'>Publicaciones</h3>
 
         <?php
+        require_once '../view/require/search_receta.php';
         require_once '../view/require/tabla_publicaciones.php';
         ?>
     </main>
